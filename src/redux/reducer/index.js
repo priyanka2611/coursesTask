@@ -1,24 +1,19 @@
-import { ROUTECHANGEFORNEW, ROUTECHANGEFOREDIT } from '../constants';
+import { HANDLESUBMIT } from '../constants';
 const initialState = { 
     courseList: [
-        { id: '', Title: '', Length: '', Category: '', Author :'' }
+        { id: '', title: '', length: '', category: '', author :'' }
      ]
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ROUTECHANGEFORNEW: {
+    case HANDLESUBMIT: {
       return {
         ...state,
-        urlnew: action.payload
+        courseList: state.courseList.concat(action.formData)
       };
     }
-    case ROUTECHANGEFOREDIT: {
-      return {
-        ...state,
-        urledit: action.payload
-      };
-    }
+   
 
     default:
       return state;
