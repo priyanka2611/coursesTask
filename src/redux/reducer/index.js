@@ -1,8 +1,6 @@
 import { HANDLESUBMIT } from '../constants';
-const initialState = { 
-    courseList: [
-        { id: '', title: '', length: '', category: '', author :'' }
-     ]
+const initialState = {
+  courseList: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -10,10 +8,9 @@ const rootReducer = (state = initialState, action) => {
     case HANDLESUBMIT: {
       return {
         ...state,
-        courseList: state.courseList.concat(action.formData)
+        courseList: [...state.courseList, action.payload]
       };
     }
-   
 
     default:
       return state;
