@@ -11,17 +11,10 @@ class CreateComponent extends Component {
     length: null
   };
 
-  onChange = e => {
+  onChangeVal = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
   onSubmit = () => {
-    //const data = new FormData(event.target);
-    // this.setState({
-    //   title= data.title,
-    //   author= data.author,
-    //   category= data.category,
-    //   length= data.length
-    // })
     const { title, author, category, length } = this.state;
     this.props.handleSubmit({ title, author, category, length });
     this.props.history.push('/');
@@ -36,7 +29,7 @@ class CreateComponent extends Component {
             type="text"
             name="title"
             placeholder="Enter Title of course"
-            onChange={this.props.onChange}
+            onChange={this.onChangeVal}
           />
           <br />
           <br />
@@ -45,7 +38,7 @@ class CreateComponent extends Component {
             type="text"
             name="author"
             placeholder="Author"
-            onChange={this.props.onChange}
+            onChange={this.onChangeVal}
           />
           <br />
           <br />
@@ -54,7 +47,7 @@ class CreateComponent extends Component {
             type="text"
             name="category"
             placeholder="category of course"
-            onChange={this.props.onChange}
+            onChange={this.onChangeVal}
           />
           <br />
           <br />
@@ -63,7 +56,7 @@ class CreateComponent extends Component {
             type="text"
             name="length"
             placeholder="length of couse in minutes or hours"
-            onChange={this.props.onChange}
+            onChange={this.onChangeVal}
           />
           <br />
           <br />

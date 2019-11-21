@@ -15,10 +15,10 @@ class ListComponent extends Component {
               {this.props.courseList.map(item => {
                 return (
                   <li>
-                    {item.title || 'no city name'}
-                    {item.author || 'no city name'}
-                    {item.category || 'no city name'}
-                    {item.length || 'no city name'}
+                    {item.title || '-'}
+                    {item.author || '-'}
+                    {item.category || '-'}
+                    {item.length || '-'}
                   </li>
                 );
               })}
@@ -31,11 +31,7 @@ class ListComponent extends Component {
 }
 const mapStateToProps = state => {
   return {
-    courseList: state.courseList,
-    length: state.courseList.Length,
-    title: state.courseList.titile,
-    author: state.courseList.author,
-    category: state.courseList.category
+    courseList: state.courseList
   };
 };
 const mapDispatchToProps = dispatch => {};
