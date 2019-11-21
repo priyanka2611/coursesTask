@@ -1,4 +1,5 @@
 import { HANDLESUBMIT } from '../constants';
+
 const initialState = {
   courseList: []
 };
@@ -13,7 +14,7 @@ const rootReducer = (state = initialState, action) => {
     }
 
     default:
-      return state;
+    return state;
   }
 };
 

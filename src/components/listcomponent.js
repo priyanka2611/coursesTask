@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { handleSubmit } from '../redux/action';
+import './mixstyle.css';
 class ListComponent extends Component {
   render() {
     console.log(this.props.courseList);
@@ -15,9 +16,9 @@ class ListComponent extends Component {
               {this.props.courseList.map(item => {
                 return (
                   <li>
-                    {item.title || '-'}
-                    {item.author || '-'}
-                    {item.category || '-'}
+                    {item.title || '-'} - 
+                    {item.author || '-'} - 
+                    {item.category || '-'} - 
                     {item.length || '-'}
                   </li>
                 );
