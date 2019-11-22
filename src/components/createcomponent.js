@@ -19,6 +19,14 @@ class CreateComponent extends Component {
     this.props.handleSubmit({ title, author, category, length });
     this.props.history.push('/');
   };
+  onClear=()=>{
+   this.setState({
+    title: '',
+    author: '',
+    category: '',
+    length: ''
+   })
+  }
   render() {
     return (
       <div>
@@ -30,6 +38,7 @@ class CreateComponent extends Component {
             name="title"
             placeholder="Enter Title of course"
             onChange={this.onChangeVal}
+            value={this.state.title}
           />
           <br />
           <br />
@@ -39,6 +48,7 @@ class CreateComponent extends Component {
             name="author"
             placeholder="Author"
             onChange={this.onChangeVal}
+            value={this.state.author}
           />
           <br />
           <br />
@@ -48,6 +58,7 @@ class CreateComponent extends Component {
             name="category"
             placeholder="category of course"
             onChange={this.onChangeVal}
+            value={this.state.category}
           />
           <br />
           <br />
@@ -57,11 +68,12 @@ class CreateComponent extends Component {
             name="length"
             placeholder="length of couse in minutes or hours"
             onChange={this.onChangeVal}
+            value={this.state.length}
           />
           <br />
           <br />
           <button onClick={() => this.onSubmit()}>SUBMIT</button>
-          <button>CLEAR VALUES</button>
+          <button onClick={()=> this.onClear()}>CLEAR VALUES</button>
         </div>
       </div>
     );

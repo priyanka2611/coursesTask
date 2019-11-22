@@ -1,7 +1,7 @@
-.Box {
-    border: 1px solid red;
-    border-collapse: collapse;
-    padding: 15px;
-    width:100%;
-    word-wrap: break-word;
-  }
+table, th, td {
+  border: 1px solid black;
+}
+
+tr.selected{
+  background-color: palevioletred;
+}

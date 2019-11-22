@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { handleSubmit } from '../redux/action';
+import { handleChange } from '../redux/action';
 
 class EditComponent extends Component {
-  state = {
-    title: null,
-    author: null,
-    category: null,
-    length: null
-  };
 
-  handleSubmitForEdit(event) {
-    event.preventDefault();
-    const data = new FormData(event.target);
-    this.setState({
-      title: data.title,
-      author: data.author,
-      category: data.category,
-      length: data.length
-    });
-  }
+  state = ({
+    title: undefined,
+    author: undefined,
+    category: undefined,
+    length: undefined
+  })
+
+  
+  onChangeVal = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+  onChangeValue = () => {
+    const { title, author, category, length } = this.state;
+    this.props.handleChange({ title, author, category, length ,id: this.props.course.id});
+    this.props.history.push('/');
+  };
   render() {
+    if(this.props.course)
     return (
       <div>
         <h1>ADD</h1>
@@ -30,11 +31,10 @@ class EditComponent extends Component {
             required
             type="text"
             name="title"
+            onChange={this.onChangeVal}
             placeholder="Enter Title of course"
-            onChange={this.props.addValues}
-            value={this.props.titile}
+            defaultValue={this.props.course.title}
           />
-
           <br />
           <br />
           <input
@@ -42,9 +42,9 @@ class EditComponent extends Component {
             type="text"
             name="author"
             placeholder="Author"
-            onChange={this.props.addValues}
-            value={this.props.author}
-          ></input>
+            onChange={this.onChangeVal}
+            defaultValue={this.props.course.author}
+          />
           <br />
           <br />
           <input
@@ -52,8 +52,8 @@ class EditComponent extends Component {
             type="text"
             name="category"
             placeholder="category of course"
-            onChange={this.props.addValues}
-            value={this.props.category}
+            onChange={this.onChangeVal}
+            defaultValue={this.props.course.category}
           />
           <br />
           <br />
@@ -62,12 +62,12 @@ class EditComponent extends Component {
             type="text"
             name="length"
             placeholder="length of couse in minutes or hours"
-            onChange={this.props.addValues}
-            value={this.props.length}
+            onChange={this.onChangeVal}
+            defaultValue={this.props.course.length}
           />
           <br />
           <br />
-          <button>CHANGE</button>
+          <button onClick={() => this.onChangeValue()}>CHANGE</button>
         </form>
       </div>
     );
@@ -75,20 +75,18 @@ class EditComponent extends Component {
 }
 
 const mapStateToProps = state => {
+  const selectedCourse = state.courseList.find(c => c.id === state.selectedCourse)
   return {
-    length: state.courseList.length,
-    title: state.courseList.title,
-    author: state.courseList.author,
-    category: state.courseList.category
+    course: selectedCourse
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  //   return bindActionCreators(
-  //     {
-  //         handleSubmitForEdit
-  //     },
-  //     state
-  //   );
+  return bindActionCreators(
+    {
+      handleChange
+    },
+    dispatch
+  );
 };
 export default connect(mapStateToProps, mapDispatchToProps)(EditComponent);
