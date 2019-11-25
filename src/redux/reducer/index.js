@@ -21,13 +21,14 @@ const rootReducer = (state = initialState, action) => {
         selectedCourse: action.courseId
       }
       case HANDLECHANGE:
-        const courseId = action.payload.id
-        const courseIndex= state.courseList.findIndex(c => c.id === courseId)
-        const courseChangedObject = {...this.state.courseList[courseIndex]}
-        courseChangedObject.title = action.payload.title;
+        const courseId = action.payload.id 
+        const courseIndex= state.courseList.findIndex(c => c.id === (courseId))
+        const courseListUpdated = [...state.courseList]
+        courseListUpdated[courseIndex] = {...action.payload}
           return {
             ...state,
-            courseList: {...state.courseList,[courseIndex]: courseChangedObject}
+            courseList: courseListUpdated,
+            selectedCourse: 0
           };
 
         

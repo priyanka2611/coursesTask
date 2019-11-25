@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { handleSubmit } from '../redux/action';
 import { SELECTCOURSE} from '../redux/constants'
 import './mixstyle.css';
 class ListComponent extends Component {
